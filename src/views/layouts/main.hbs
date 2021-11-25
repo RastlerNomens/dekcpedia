@@ -12,11 +12,12 @@
         <link rel="stylesheet" href="/css/main.css" />
     </head>
     <body>
-        <p>Navigation</p>
+        {{>navigation}}
 
         <main class="container">
+            {{> errors}}
             {{> message}}
-        {{{ body }}}
+            {{{ body }}}
         </main>
 
         <p>Footer</p>
