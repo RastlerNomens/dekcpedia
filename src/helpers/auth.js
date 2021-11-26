@@ -8,4 +8,13 @@ helpers.isAuthenticated = (req,res,next) => {
     res.redirect('/users/signin');
 };
 
+helpers.isAdmin = (req,res,next) => {
+    const {user} = req;
+    if(req.isAuthenticated() && user.role == 'admin') {
+        return next();
+    }
+    req.flash('error_message','Not Authorized');
+    res.redirect('/');
+}   
+
 module.exports = helpers;

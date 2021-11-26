@@ -1,11 +1,11 @@
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('../models/User');
 
-passport.use(new localStrategy({
+passport.use(new LocalStrategy({
     usernameField: 'email'
-}, async (email,password,done) => {
+}, async (email, password, done) => {
     const user = await User.findOne({email: email});
     if(!user) {
         return done(null, false, {message: 'Not User Found.'});
@@ -25,6 +25,6 @@ passport.serializeUser((user,done) => {
 
 passport.deserializeUser((id,done) => {
     User.findById(id,(err,user) => {
-
+        done(err,user);
     });
 })

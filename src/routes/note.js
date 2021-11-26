@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const Note = require('../models/Note');
-const { isAuthenticated } = require('../helpers/auth');
+const { isAuthenticated, isAdmin } = require('../helpers/auth');
 
-router.get('/notes', async(req,res) => {
+router.get('/notes', isAdmin, async(req,res) => {
     const notes = await Note.find({owner: req.user.id}).lean().sort({date:'desc'});
     res.render('notes/all-notes',{notes});
-})
+});
 
 router.get('/notes/add', isAuthenticated, (req,res) => {
     res.render('notes/new-note');
@@ -31,7 +31,7 @@ router.post('/notes/new-note', isAuthenticated, async(req,res) => {
         });
     } else {
         const newNote = new Note({title,description});
-        newNote.owner = req.user.id;
+        newNote.owner = req.user._id;
         await newNote.save();
         req.flash('success_msg','Note Added Successfully');
         res.redirect('/notes');
