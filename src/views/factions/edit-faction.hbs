@@ -1,0 +1,35 @@
+<div class="col-md-4 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h3>Edit Faction: {{faction.name}}</h3>
+        </div>
+        <div class="card-body">
+            <form action="/factions/edit/{{faction._id}}" method="POST">
+                <input type="hidden" name="_method" value="PUT" />
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Name" autofocus value="{{faction.name}}"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="image" class="form-control" placeholder="URL IMG" value="{{faction.image}}"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="slug" class="form-control" placeholder="Slug" value="{{faction.slug}}"/>
+                </div>
+                <div class="form-group">
+                    <select class="form-select" aria-label="Select alliance" name="alliance">
+                        <option selected>Select alliance</option>
+                        <option value="0">Telerianos</option>
+                        <option value="1">Pacto de Gaellen</option>
+                        <option value="2">Corrompidos</option>
+                        <option value="3">Unión Niresana</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

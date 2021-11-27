@@ -1,0 +1,15 @@
+<h1 class="text-center mt-3">Telerianos</h1>
+<div class="row">
+    {{#each telerianos}}
+    <div class="col-sm text-center">
+        <a href="/factions/{{slug}}">
+            <div class="card card-faction">
+                <img src="public/img/blank-img.jpg" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+    {{/each}}
+</div>

@@ -4,7 +4,7 @@ const router = express.Router();
 const Note = require('../models/Note');
 const { isAuthenticated, isAdmin } = require('../helpers/auth');
 
-router.get('/notes', isAdmin, async(req,res) => {
+router.get('/notes', isAuthenticated, async(req,res) => {
     const notes = await Note.find({owner: req.user.id}).lean().sort({date:'desc'});
     res.render('notes/all-notes',{notes});
 });

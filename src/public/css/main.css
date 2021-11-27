@@ -1,3 +1,8 @@
 body {
     background: #eee;
 }
+
+.card-faction {
+    max-width: 15vw;
+    margin: auto;
+}
