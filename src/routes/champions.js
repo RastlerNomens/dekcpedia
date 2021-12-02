@@ -6,12 +6,12 @@ const Faction  = require('../models/Faction');
 
 const { isAuthenticated, isAdmin } = require('../helpers/auth');
 
-router.get('/champions/add', async (req,res) => {
+router.get('/champions/add', isAdmin, async (req,res) => {
     const factions = await Faction.find().lean();
     res.render('champions/new-champion',{factions});
 });
 
-router.post('/champions/new-champion', async(req,res) => {
+router.post('/champions/new-champion', isAdmin, async(req,res) => {
     const body = req.body;
 
     var bodyChamp = [];
@@ -55,7 +55,7 @@ router.post('/champions/new-champion', async(req,res) => {
     res.redirect('/factions');
 });
 
-router.get('/champions/:id', async(req,res) => {
+router.get('/champions/:id', isAuthenticated, async(req,res) => {
     const champion = await Champion.findById(req.params.id).lean();
 
     res.render('champions/profile',champion);
