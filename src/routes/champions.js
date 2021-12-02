@@ -56,9 +56,15 @@ router.post('/champions/new-champion', isAdmin, async(req,res) => {
 });
 
 router.get('/champions/:id', isAuthenticated, async(req,res) => {
+    const role = req.user.role; 
+    if(role=='admin') {
+        admin = true; 
+    } else {
+        admin = false;
+    }
     const champion = await Champion.findById(req.params.id).lean();
 
-    res.render('champions/profile',champion);
+    res.render('champions/profile',{champion,admin});
 });
 
 module.exports = router;

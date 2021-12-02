@@ -49,6 +49,7 @@ app.use(require('./routes/users'));
 app.use(require('./routes/note'));
 app.use(require('./routes/factions'));
 app.use(require('./routes/champions'));
+app.use(require('./routes/collection'));
 //Static files
 app.use(express.static(path.join(__dirname,'public')))
 
