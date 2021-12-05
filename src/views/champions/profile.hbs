@@ -3,7 +3,7 @@
     <div class="col-4">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Nombre Campeon</h5>
+                <h5 class="card-title">{{champion.name}}</h5>
             </div>
             <img src="public/img/blank-img.jpg" class="card-img-bottom" >
         </div> 
@@ -81,9 +81,9 @@
             </tbody>
         </table>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCollection">Add collection</button>
-        {{#if ../admin}}
-
-        {{#admin}}
+        {{#if admin}}
+            <a href="/champions/edit/{{champion._id}}" class="btn btn-warning">Editar</a>
+        {{/if}}
     </div>
 </div>
 

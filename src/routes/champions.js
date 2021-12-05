@@ -14,6 +14,31 @@ router.get('/champions/add', isAdmin, async (req,res) => {
 router.post('/champions/new-champion', isAdmin, async(req,res) => {
     const body = req.body;
 
+    var bodyChamp = getChampion(body);
+
+    const newChampion = new Champion(bodyChamp);
+    await newChampion.save();
+    req.flash('success_msg', 'Champion Added Successfully');
+    res.redirect('/factions');
+});
+
+router.get('/champions/:id', isAuthenticated, async(req,res) => {
+    const role = req.user.role; 
+    if(role=='admin') {
+        admin = true; 
+    } else {
+        admin = false;
+    }
+    const champion = await Champion.findById(req.params.id).lean();
+
+    res.render('champions/profile',{champion,admin});
+});
+
+router.get('/champions/edit/:id', isAdmin, async(req,res) => {
+
+});
+
+function getChampion(body) {
     var bodyChamp = [];
 
     bodyChamp['name'] = body.name;
@@ -49,22 +74,7 @@ router.post('/champions/new-champion', isAdmin, async(req,res) => {
     bodyChamp['points']['void'] = body.void;
     bodyChamp['points']['factions'] = body.factions;
 
-    const newChampion = new Champion(bodyChamp);
-    await newChampion.save();
-    req.flash('success_msg', 'Champion Added Successfully');
-    res.redirect('/factions');
-});
-
-router.get('/champions/:id', isAuthenticated, async(req,res) => {
-    const role = req.user.role; 
-    if(role=='admin') {
-        admin = true; 
-    } else {
-        admin = false;
-    }
-    const champion = await Champion.findById(req.params.id).lean();
-
-    res.render('champions/profile',{champion,admin});
-});
+    return bodyChamp;
+}
 
 module.exports = router;
