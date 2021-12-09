@@ -64,6 +64,7 @@ function getChampion(body) {
     bodyChamp['points']['atkarena'] = body.atkarena;
     bodyChamp['points']['minotaurus'] = body.minotaurus;
     bodyChamp['points']['clan'] = body.clan;
+    bodyChamp['points']['hidra'] = body.hidra;
     bodyChamp['points']['golem'] = body.golem;
     bodyChamp['points']['spider'] = body.spider;
     bodyChamp['points']['drake'] = body.drake;
