@@ -13,8 +13,9 @@ router.get('/champions/add', isAdmin, async (req,res) => {
 
 router.post('/champions/new-champion', isAdmin, async(req,res) => {
     const body = req.body;
+    const files = req.files;
 
-    var bodyChamp = getChampion(body);
+    var bodyChamp = getChampion(body,files);
 
     const newChampion = new Champion(bodyChamp);
     await newChampion.save();
@@ -38,11 +39,20 @@ router.get('/champions/edit/:id', isAdmin, async(req,res) => {
 
 });
 
-function getChampion(body) {
+function getChampion(body,files) {
     var bodyChamp = [];
+    
+    if(files) {
+        let EDFile = files.image;
+
+        EDFile.mv(`./src/public/img/champions/${EDFile.name}`,err => {
+            if(err) return res.status(500).send({message:err});
+        })
+
+        bodyChamp['image'] = EDFile.name;
+    }
 
     bodyChamp['name'] = body.name;
-    bodyChamp['image'] = body.image;
     bodyChamp['type'] = body.type;
     bodyChamp['faction'] = body.faction;
     bodyChamp['rarity'] = body.rarity;
