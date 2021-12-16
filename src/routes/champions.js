@@ -36,7 +36,18 @@ router.get('/champions/:id', isAuthenticated, async(req,res) => {
 });
 
 router.get('/champions/edit/:id', isAdmin, async(req,res) => {
+    const champion = await Champion.findById(req.params.id).lean();
+    res.render('champions/edit-champion');
+});
 
+router.put('/champions/edit/:id', isAdmin, async(req,res) => {
+
+});
+
+router.delete('/champions/delete/:id', isAdmin, async(req,res) => {
+    await Champion.findByIdAndDelete(req.params.id);
+    req.flash('success_msg','Champion Deleted Successfully');
+    res.redirect('/factions');
 });
 
 function getChampion(body,files) {

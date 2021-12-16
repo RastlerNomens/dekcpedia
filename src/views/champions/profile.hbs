@@ -42,7 +42,7 @@
         <table class="table table-bordered border-primary">
             <thead class="table-dark">
                 <tr>
-                    <th colspan="14" class="text-center">PUNTUACIONES</th>
+                    <th colspan="15" class="text-center">PUNTUACIONES</th>
                 </tr>
                 <tr>
                     <th class="text-center">Arena ATK</th>
@@ -85,6 +85,7 @@
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCollection">Add collection</button>
         {{#if admin}}
             <a href="/champions/edit/{{champion._id}}" class="btn btn-warning">Editar</a>
+            <a href="/champions/delete/{{champion._id}}" class="btn btn-danger">Delete</a>
         {{/if}}
     </div>
 </div>
