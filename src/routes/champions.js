@@ -13,8 +13,9 @@ router.get('/champions/add', isAdmin, async (req,res) => {
 
 router.post('/champions/new-champion', isAdmin, async(req,res) => {
     const body = req.body;
+    const files = req.files;
 
-    var bodyChamp = getChampion(body);
+    var bodyChamp = getChampion(body,files);
 
     const newChampion = new Champion(bodyChamp);
     await newChampion.save();
@@ -35,14 +36,34 @@ router.get('/champions/:id', isAuthenticated, async(req,res) => {
 });
 
 router.get('/champions/edit/:id', isAdmin, async(req,res) => {
+    const champion = await Champion.findById(req.params.id).lean();
+    res.render('champions/edit-champion');
+});
+
+router.put('/champions/edit/:id', isAdmin, async(req,res) => {
 
 });
 
-function getChampion(body) {
+router.delete('/champions/delete/:id', isAdmin, async(req,res) => {
+    await Champion.findByIdAndDelete(req.params.id);
+    req.flash('success_msg','Champion Deleted Successfully');
+    res.redirect('/factions');
+});
+
+function getChampion(body,files) {
     var bodyChamp = [];
+    
+    if(files) {
+        let EDFile = files.image;
+
+        EDFile.mv(`./src/public/img/champions/${EDFile.name}`,err => {
+            if(err) return res.status(500).send({message:err});
+        })
+
+        bodyChamp['image'] = EDFile.name;
+    }
 
     bodyChamp['name'] = body.name;
-    bodyChamp['image'] = body.image;
     bodyChamp['type'] = body.type;
     bodyChamp['faction'] = body.faction;
     bodyChamp['rarity'] = body.rarity;

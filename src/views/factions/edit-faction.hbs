@@ -4,13 +4,14 @@
             <h3>Edit Faction: {{faction.name}}</h3>
         </div>
         <div class="card-body">
-            <form action="/factions/edit/{{faction._id}}" method="POST">
+            <form action="/factions/edit/{{faction._id}}?_method=PUT" method="POST"  enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT" />
                 <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Name" autofocus value="{{faction.name}}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="image" class="form-control" placeholder="URL IMG" value="{{faction.image}}"/>
+                    <label for="image">Bandera Facciónnp</label>
+                    <input type="file" class="form-control-file" name="image">
                 </div>
                 <div class="form-group">
                     <input type="text" name="slug" class="form-control" placeholder="Slug" value="{{faction.slug}}"/>

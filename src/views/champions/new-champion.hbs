@@ -4,13 +4,14 @@
             <h3>New Champion</h3>
         </div>
         <div class="card-body">
-            <form action="/champions/new-champion" method="POST">
+            <form action="/champions/new-champion" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Name" autofocus/>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="image" class="form-control" placeholder="Image" />
+                        <label for="image">Imagen</label>
+                        <input type="file" class="form-control-file" name="image">
                     </div>
                     <div class="form-group">
                         <select class="form-select" aria-label="Select type" name="type">

@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const fileUpload = require('express-fileupload');
 
 //Initiliazations
 const app = express();
@@ -21,6 +22,7 @@ app.engine('.hbs', engine({
     extname: '.hbs'
 }));
 app.set('view engine','.hbs');
+app.use(fileUpload())
 
 //Middlewares
 app.use(express.urlencoded({extended: false}));
@@ -44,8 +46,7 @@ app.use((req,res,next) => {
 });
 
 //Routes
-app.use(require('./routes/index'));
-app.use(require('./routes/users'));
+app.use(require('./routes/web'));
 app.use(require('./routes/note'));
 app.use(require('./routes/factions'));
 app.use(require('./routes/champions'));

@@ -1,0 +1,19 @@
+<div class="col-lg-2 col-md-4 col-sm-6 col-10 text-center mx-auto">
+    <a href="/champions/{{_id}}">
+        <div class="card ">
+            <img src="/img/champions/{{image}}" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">{{name}}</h5>
+            </div>
+            {{#if ../admin}}
+            <div class="card-footer">
+                <a href="/champions/edit/{{_id}}" class="btn btn-warning">Editar</a>
+                <form action="/champions/delete/{{_id}}?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="DELETE" />
+                    <button class="btn btn-danger btn-block btn-sm" type="submit">Delete</button>
+                </form>
+            </div>
+            {{/if}}
+        </div>
+    </a>
+</div>

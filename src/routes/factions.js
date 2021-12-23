@@ -23,7 +23,7 @@ router.get('/factions/add', isAdmin,  (req,res) => {
 });
 
 router.post('/factions/new-faction', isAdmin, async(req,res) => {
-    const {name, image, slug, alliance} = req.body;
+    const {name, slug, alliance} = req.body;
     const errors = [];
 
     if(!name) {
@@ -36,16 +36,24 @@ router.post('/factions/new-faction', isAdmin, async(req,res) => {
         errors.push({text: 'Please select alliance'});
     }
     if(errors.length > 0) {
-        res.render('factions/new-faction',errors,name,image,slug,alliance);
+        res.render('factions/new-faction',errors,name,slug,alliance);
     } else {
         const faction = await Faction.findOne({slug: slug});
         if(faction) {
             req.flash('error_message','This slug is already exist');
-            res.render('factions/new-faction',name,image,slug,alliance);
+            res.render('factions/new-faction',name,slug,alliance);
         }
+        
+        let EDFile = req.files.image;
+        
+        EDFile.mv(`./src/public/img/factions/${EDFile.name}`,err => {
+            if(err) return res.status(500).send({ message : err });
+        })
+        let image = EDFile.name;
+        req.flash('success_msg','New Faction Created!');
+        
         const newFaction = new Faction({name,image,slug,alliance});
         await newFaction.save();
-        req.flash('success_msg','New Faction Created!');
         res.redirect('/factions');
     }
 });
@@ -56,8 +64,23 @@ router.get('/factions/edit/:id', isAdmin, async(req,res) => {
 });
 
 router.put('/factions/edit/:id', isAdmin, async(req,res) => {
-    const {name, image, slug, alliance} = req.body;
-    await Faction.findByIdAndUpdate(req.params.id,{name,image,slug,alliance});
+    const {name, slug, alliance} = req.body;
+
+    if(req.files) {
+        console.log('dins');
+        let EDFile = req.files.image;
+        
+        EDFile.mv(`./src/public/img/factions/${EDFile.name}`,err => {
+            if(err) return res.status(500).send({ message : err });
+        })
+
+        let image = EDFile.name;
+
+        await Faction.findByIdAndUpdate(req.params.id,{name,image,slug,alliance})
+    } else {
+        await Faction.findByIdAndUpdate(req.params.id,{name,slug,alliance})
+    }
+        
     req.flash('success_msg', 'Faction Updated Successfully');
     res.redirect('/factions');
 });
