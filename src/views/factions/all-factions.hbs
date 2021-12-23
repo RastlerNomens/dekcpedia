@@ -1,29 +1,7 @@
 {{#if admin}}
 <a href="/factions/add" class="btn btn-success">Crear Facción</a>
 <a href="/champions/add" class="btn btn-success">Crear Campeón</a>
+{{> admin/all-factions }}
+{{else}}
+{{> all-facionts}}
 {{/if}}
-
-<h1 class="text-center mt-3">Telerianos</h1>
-<div class="row">
-    {{#each telerianos}}
-    <div class="col-sm text-center">
-        <a href="/factions/{{slug}}">
-            <div class="card card-faction">
-                <img src="/img/factions/{{image}}" class="card-img-top" />
-                <div class="card-body">
-                    <h5 class="card-title">{{name}}</h5>
-                </div>
-                {{#if ../admin}}
-                <div class="card-footer">
-                    <a href="/factions/edit/{{_id}}" class="btn btn-warning">Editar</a>
-                    <form action="/faction/delete/{{_id}}?_method=DELETE" method="POST">
-                        <input type="hidden" name="_method" value="DELETE" />
-                        <button class="btn btn-danger btn-block btn-sm" type="submit">Delete</button>
-                    </form>
-                </div>
-                {{/if}}
-            </div>
-        </a>
-    </div>
-    {{/each}}
-</div>
