@@ -4,7 +4,8 @@
             <h3>Edit Champion: {{champion.name}}</h3>
         </div>
         <div class="card-body">
-            <form action="/champions/new-champion" method="POST" enctype="multipart/form-data">
+            <form action="/champions/new-champion/{{champion._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="PUT" />
                 <div class="form-group">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" placeholder="Name" autofocus/>
