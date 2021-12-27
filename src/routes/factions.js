@@ -13,10 +13,12 @@ router.get('/factions', isAuthenticated, async (req,res) => {
         admin = false;
     }
 
-    let telerianos = await Faction.find({alliance:0}).lean();
-    let pactos     = await Faction.find({alliance:1}).lean();
+    let telerianos  = await Faction.find({alliance:0}).lean();
+    let pactos      = await Faction.find({alliance:1}).lean();
+    let corrompidos = await Faction.find({alliance:2}).lean();
+    let union       = await Faction.find({alliance:3}).lean();
     
-    res.render('factions/all-factions',{telerianos,pactos,admin}); 
+    res.render('factions/all-factions',{telerianos,pactos,corrompidos,union,admin}); 
 });
 
 router.get('/factions/add', isAdmin,  (req,res) => {

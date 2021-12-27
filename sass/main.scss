@@ -1,18 +1,25 @@
 body {
-    background: #eee;
-    min-height: 100vh;
-  
-    .container {
-      padding-top: 20px;
-    }
+  background: #eee;
+  min-height: 100vh;
+
+  .container {
+    padding-top: 20px;
   }
+}
+
+main {
+  margin-bottom: 200px;
+  .row {
+    margin-bottom: 15px;
+  }
+}
   
 .card-faction {
-    max-width: 15vw;
-    margin: auto;
+  max-width: 15vw;
+  margin: auto;
 }
   
 footer {
-    width: 100vw;
-    background: black;
+  width: 100vw;
+  background: black;
 }

@@ -4,6 +4,11 @@ body {
   body .container {
     padding-top: 20px; }
 
+main {
+  margin-bottom: 200px; }
+  main .row {
+    margin-bottom: 15px; }
+
 .card-faction {
   max-width: 15vw;
   margin: auto; }
