@@ -95,7 +95,7 @@ router.get('/factions/:slug', isAuthenticated, async (req,res) => {
     } else {
         admin = false;
     }
-    console.log(req.params.slug);
+
     const legendarios = await Champion.find({faction: req.params.slug,rarity:4}).lean();
     const epicos = await Champion.find({faction: req.params.slug,rarity:3}).lean();
     const raros = await Champion.find({faction: req.params.slug,rarity:2}).lean();

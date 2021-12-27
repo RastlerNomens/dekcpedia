@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{champion.name}}</h5>
             </div>
-            <img src="public/img/blank-img.jpg" class="card-img-bottom" >
+            <img src="/img/champions/{{champion.image}}" class="card-img-bottom" >
         </div> 
     </div>
     <div class="col-8">
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="text-center">1050</td>
+                    <td class="text-center">{{champion.stats}}</td>
                     <td class="text-center">1050</td>
                     <td class="text-center">1050</td>
                     <td class="text-center">1050</td>
@@ -89,7 +89,11 @@
         {{/if}}
     </div>
 </div>
-
+<ul>
+{{#each champion}}
+    <li>{{ this }}</li>
+{{/each}}
+</ul>
 <!-- Add collection modal -->
 <div class="modal fade" id="addCollection" tabindex="-1" aria-labelledby="addCollection" aria-hidden="true">
     <div class="modal-dialog">

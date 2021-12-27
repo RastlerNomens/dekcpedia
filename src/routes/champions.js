@@ -18,10 +18,12 @@ router.post('/champions/new-champion', isAdmin, async(req,res) => {
     var bodyChamp = getChampion(body,files);
 
     const newChampion = new Champion(bodyChamp);
+    console.log(bodyChamp);
+    console.log(bodyChamp['stats']['hp']);
     await newChampion.save();
     req.flash('success_msg', 'Champion Added Successfully');
     res.redirect('/factions');
-});
+}); 
 
 router.get('/champions/:id', isAuthenticated, async(req,res) => {
     const role = req.user.role; 
@@ -70,31 +72,31 @@ function getChampion(body,files) {
     bodyChamp['affinity'] = body.affinity;
 
     bodyChamp['stats'] = [];
-    bodyChamp['stats']['hp'] = body.hp;
-    bodyChamp['stats']['atk'] = body.atk;
-    bodyChamp['stats']['def'] = body.def;
-    bodyChamp['stats']['vel'] = body.vel;
-    bodyChamp['stats']['pcrit'] = body.pcrit;
-    bodyChamp['stats']['dcrit'] = body.dcrit;
-    bodyChamp['stats']['resist'] = body.resist;
-    bodyChamp['stats']['punt'] = body.punt;
+    bodyChamp['stats'][0] = body.hp;
+    bodyChamp['stats'][1] = body.atk;
+    bodyChamp['stats'][2] = body.def;
+    bodyChamp['stats'][3] = body.vel;
+    bodyChamp['stats'][4] = body.pcrit;
+    bodyChamp['stats'][5] = body.dcrit;
+    bodyChamp['stats'][6] = body.resist;
+    bodyChamp['stats'][7] = body.punt;
 
     bodyChamp['points'] = [];
-    bodyChamp['points']['campaign'] = body.campaign;
-    bodyChamp['points']['defarena'] = body.defarena;
-    bodyChamp['points']['atkarena'] = body.atkarena;
-    bodyChamp['points']['minotaurus'] = body.minotaurus;
-    bodyChamp['points']['clan'] = body.clan;
-    bodyChamp['points']['hidra'] = body.hidra;
-    bodyChamp['points']['golem'] = body.golem;
-    bodyChamp['points']['spider'] = body.spider;
-    bodyChamp['points']['drake'] = body.drake;
-    bodyChamp['points']['fire'] = body.fire;
-    bodyChamp['points']['force'] = body.force;
-    bodyChamp['points']['magic'] = body.magic;
-    bodyChamp['points']['spirit'] = body.spirit;
-    bodyChamp['points']['void'] = body.void;
-    bodyChamp['points']['factions'] = body.factions;
+    bodyChamp['points'][0] = body.campaign;
+    bodyChamp['points'][1] = body.defarena;
+    bodyChamp['points'][2] = body.atkarena;
+    bodyChamp['points'][3] = body.minotaurus;
+    bodyChamp['points'][4] = body.clan;
+    bodyChamp['points'][5] = body.hidra;
+    bodyChamp['points'][6] = body.golem;
+    bodyChamp['points'][7] = body.spider;
+    bodyChamp['points'][8] = body.drake;
+    bodyChamp['points'][9] = body.fire;
+    bodyChamp['points'][10] = body.force;
+    bodyChamp['points'][11] = body.magic;
+    bodyChamp['points'][12] = body.spirit;
+    bodyChamp['points'][13] = body.void;
+    bodyChamp['points'][14] = body.factions;
 
     return bodyChamp;
 }
