@@ -95,11 +95,12 @@ router.get('/factions/:slug', isAuthenticated, async (req,res) => {
     } else {
         admin = false;
     }
-    const legendarios = await Champion.find({slug: req.params.slug,rarity:4}).lean();
-    const epicos = await Champion.find({slug: req.params.slug,rarity:3}).lean();
-    const raros = await Champion.find({slug: req.params.slug,rarity:2}).lean();
-    const infrecuentes = await Champion.find({slug: req.params.slug,rarity:1}).lean();
-    const comun = await Champion.find({slug: req.params.slug,rarity:0}).lean();
+    console.log(req.params.slug);
+    const legendarios = await Champion.find({faction: req.params.slug,rarity:4}).lean();
+    const epicos = await Champion.find({faction: req.params.slug,rarity:3}).lean();
+    const raros = await Champion.find({faction: req.params.slug,rarity:2}).lean();
+    const infrecuentes = await Champion.find({faction: req.params.slug,rarity:1}).lean();
+    const comun = await Champion.find({faction: req.params.slug,rarity:0}).lean();
 
     res.render('champions/faction-champion',{admin,legendarios,epicos,raros,infrecuentes,comun});
 });
