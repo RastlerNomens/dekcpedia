@@ -18,8 +18,6 @@ router.post('/champions/new-champion', isAdmin, async(req,res) => {
     var bodyChamp = getChampion(body,files);
 
     const newChampion = new Champion(bodyChamp);
-    console.log(bodyChamp);
-    console.log(bodyChamp['stats']['hp']);
     await newChampion.save();
     req.flash('success_msg', 'Champion Added Successfully');
     res.redirect('/factions');
