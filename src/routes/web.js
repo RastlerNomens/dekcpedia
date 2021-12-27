@@ -11,6 +11,10 @@ router.get('/about', (req,res) => {
     res.render('about');
 });
 
+router.get('/logs', (req,res) => {
+    res.render('logs');
+});
+
 /* USERS */
 router.get('/users/signin',showSignin);
 router.post('/users/signin',signin);

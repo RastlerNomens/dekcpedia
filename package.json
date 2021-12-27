@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "sass": "node-sass -w sass -o src/public/css"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "express-session": "^1.17.2",
     "method-override": "^3.0.0",
     "mongoose": "^6.0.13",
+    "node-sass": "^7.0.0",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0"
   },

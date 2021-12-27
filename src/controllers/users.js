@@ -7,7 +7,7 @@ module.exports = {
         res.render('users/signin');
     },
     signin: passport.authenticate('local',{
-        successRedirect: '/notes',
+        successRedirect: '/factions',
         failureRedirect: '/users/signin',
         failureFlash: true
     }),
