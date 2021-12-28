@@ -49,7 +49,6 @@ app.use((req,res,next) => {
 //Routes
 app.use(require('./routes/web'));
 app.use(require('./routes/note'));
-app.use(require('./routes/factions'));
 app.use(require('./routes/champions'));
 app.use(require('./routes/collection'));
 //Static files
