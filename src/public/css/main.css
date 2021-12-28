@@ -10,9 +10,14 @@ main {
     margin-bottom: 15px; }
 
 .card-faction {
-  max-width: 15vw;
   margin: auto; }
 
 footer {
   width: 100vw;
   background: black; }
+
+@media (min-width: 590px) {
+  .card-faction {
+    max-width: 15vw;
+  }
+}
