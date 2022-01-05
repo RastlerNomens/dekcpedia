@@ -5,34 +5,34 @@
 <h2 class="text-center mt-3">Legendarios</h2>
 <div class="row">
     {{#each legendarios}}
-    {{> champion }}
+    {{> champion legendary="true"}}
     {{/each}}
 </div>
 
 <h2 class="text-center mt-3">Épicos</h2>
 <div class="row">
     {{#each epicos}}
-    {{> champion }}
+    {{> champion epic="true"}}
     {{/each}}  
 </div>
 
 <h2 class="text-center mt-3">Raros</h2>
 <div class="row">
     {{#each raros}}
-    {{> champion }}
+    {{> champion rare="true"}}
     {{/each}}  
 </div>
 
 <h2 class="text-center mt-3">Infrecuentes</h2>
 <div class="row">
     {{#each infrecuentes}}
-    {{> champion }}
+    {{> champion uncommon="true"}}
     {{/each}}  
 </div>
 
 <h2 class="text-center mt-3">Común</h2>
 <div class="row">
     {{#each comun}}
-    {{> champion }}
+    {{> champion common="true"}}
     {{/each}}  
 </div>

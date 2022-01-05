@@ -22,3 +22,20 @@ footer {
     max-width: 15vw;
   }
 }
+.draw-legendary {
+  border: 5px solid yellow;
+}
+.draw-epic {
+  border: 5px solid purple;
+}
+.draw-rare {
+  border: 5px solid blue;
+}
+
+.draw-uncommon {
+  border: 5px solid green;
+}
+
+.draw-common {
+  border: 5px solid silver;
+}
