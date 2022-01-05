@@ -10,6 +10,7 @@ const ChampionSchema = new Schema({
     affinity: {type: Number}, //0 Azul, 1 Rojo, 2 Verde, 3 Vacio
     stats: [{}], //hp, atk, def, vel, p.crit, d.crit, resist, punt
     points: [{}], //campaign, def.arena, atk.arena, mino, clan, golem, araña, drake, fuego, fuerza, magia, espiritu, vacio, facciones
+    order: {type: Number},
 });
 
 module.exports = mongoose.model('Champion',ChampionSchema);

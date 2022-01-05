@@ -4,11 +4,11 @@
             <h3>Edit Champion: {{champion.name}}</h3>
         </div>
         <div class="card-body">
-            <form action="/champions/new-champion/{{champion._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+            <form action="/champions/edit/{{champion._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT" />
                 <div class="form-group">
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Name" autofocus/>
+                        <input type="text" name="name" class="form-control" placeholder="Name" value="{{champion.name}}" autofocus/>
                     </div>
                     <div class="form-group">
                         <label for="image">Imagen</label>
@@ -26,60 +26,67 @@
                     </div>
                     <div class="form-group">
                         <select class="form-select" aria-label="Select faction" name="faction">
-                            <option selected>Select faction</option>
+                            {{#select champion.faction}}
                             {{#each factions}}
                             <option value="{{slug}}">{{name}}</option>
                             {{/each}}
+                            {{/select}}
                         </select>
                     </div>
                     <div class="form-group">
                         <select class="form-select" aria-label="Select rarity" name="rarity">
-                            <option selected>Select rarity</option>
+                            {{#select champion.rarity}}
                             <option value="0">Común</option>
                             <option value="1">Poco Frecuente</option>
                             <option value="2">Raro</option>
                             <option value="3">Épico</option>
                             <option value="4">Legendario</option>
+                            {{/select}}
                         </select>
                     </div>
                     <div class="form-group">
                         <select class="form-select" aria-label="Select affinity" name="affinity">
-                            <option selected>Select affinity</option>
+                            {{#select champion.affinity}}
                             <option value="0">Magia (Azul)</option>
                             <option value="1">Fuerza (Rojo)</option>
                             <option value="2">Espiriu (Verde)</option>
                             <option value="3">Vacío (Morado)</option>
+                            {{/select}}
                         </select>
                     </div>
                     <h5>Stats</h5>
-                        <div class="form-group">
-                            <input type="number" class="form-control" name="hp" placeholder="HP"/>
-                            <input type="number" class="form-control" name="atk" placeholder="ATK" />
-                            <input type="number" class="form-control" name="def" placeholder="DEF" />
-                            <input type="number" class="form-control" name="vel" placeholder="VEL" />
-                            <input type="number" class="form-control" name="pcrit" placeholder="P.CRIT" />
-                            <input type="number" class="form-control" name="dcrit" placeholder="D:CRIT" />
-                            <input type="number" class="form-control" name="resist" placeholder="RESIST" />
-                            <input type="number" class="form-control" name="punt" placeholder="PUNT" />
-                        </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="hp" placeholder="HP" value="{{champion.stats.[0]}}"/>
+                        <input type="number" class="form-control" name="atk" placeholder="ATK" value="{{champion.stats.[1]}}"/>
+                        <input type="number" class="form-control" name="def" placeholder="DEF" value="{{champion.stats.[2]}}"/>
+                        <input type="number" class="form-control" name="vel" placeholder="VEL" value="{{champion.stats.[3]}}"/>
+                        <input type="number" class="form-control" name="pcrit" placeholder="P.CRIT" value="{{champion.stats.[4]}}"/>
+                        <input type="number" class="form-control" name="dcrit" placeholder="D:CRIT" value="{{champion.stats.[5]}}"/>
+                        <input type="number" class="form-control" name="resist" placeholder="RESIST" value="{{champion.stats.[6]}}"/>
+                        <input type="number" class="form-control" name="punt" placeholder="PUNT" value="{{champion.stats.[7]}}"/>
+                    </div>
                     <h5>Points</h5>
-                        <div class="form-group">
-                            <input type="number" step="0.1" class="form-control" name="campaign" placeholder="Campaña" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="defarena" placeholder="Def.Arena" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="atkarena" placeholder="ATK.Arena" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="minotaurus" placeholder="Minotauro" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="clan" placeholder="Jefe de Clan" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="hidra" placeholder="Hidra" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="golem" placeholder="Golem de hielo" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="spider" placeholder="Araña" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="drake" placeholder="Dragón" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="fire" placeholder="Caballero de fuego" min="0" max="5"/>
-                            <input type="number" step="0.1" class="form-control" name="force" placeholder="Torre de fuerza" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="magic" placeholder="Torre de magia" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="spirit" placeholder="Torre de espiritu" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="void" placeholder="Torre de vacio" min="0" max="5" />
-                            <input type="number" step="0.1" class="form-control" name="factions" placeholder="Facciones" min="0" max="5" />
-                        </div>
+                    <div class="form-group">
+                        <input type="number" step="0.1" class="form-control" name="campaign" placeholder="Campaña" min="0" max="5" value="{{champion.points.[0]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="defarena" placeholder="Def.Arena" min="0" max="5" value="{{champion.points.[1]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="atkarena" placeholder="ATK.Arena" min="0" max="5" value="{{champion.points.[2]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="minotaurus" placeholder="Minotauro" min="0" max="5" value="{{champion.points.[3]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="clan" placeholder="Jefe de Clan" min="0" max="5" value="{{champion.points.[4]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="hidra" placeholder="Hidra" min="0" max="5" value="{{champion.points.[5]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="golem" placeholder="Golem de hielo" min="0" max="5" value="{{champion.points.[6]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="spider" placeholder="Araña" min="0" max="5" value="{{champion.points.[7]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="drake" placeholder="Dragón" min="0" max="5" value="{{champion.points.[8]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="fire" placeholder="Caballero de fuego" min="0" max="5" value="{{champion.points.[9]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="force" placeholder="Torre de fuerza" min="0" max="5" value="{{champion.points.[10]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="magic" placeholder="Torre de magia" min="0" max="5" value="{{champion.points.[11]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="spirit" placeholder="Torre de espiritu" min="0" max="5" value="{{champion.points.[12]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="void" placeholder="Torre de vacio" min="0" max="5" value="{{champion.points.[13]}}"/>
+                        <input type="number" step="0.1" class="form-control" name="factions" placeholder="Facciones" min="0" max="5" value="{{champion.points.[14]}}"/>
+                    </div>
+                    <h5>Order</h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="order" placeholder="order" min="0" value="{{champion.order}}" />
+                    </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-block" type="submit">
                             Save

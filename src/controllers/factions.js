@@ -76,11 +76,11 @@ module.exports = {
         const role = req.user.role;
         let admin = (role == 'admin');
 
-        const legendarios   = await Champion.find({faction: req.params.slug, rarity:4}).lean();
-        const epicos        = await Champion.find({faction: req.params.slug, rarity:3}).lean();
-        const infrecuentes  = await Champion.find({faction: req.params.slug, rarity:2}).lean();
-        const raros         = await Champion.find({faction: req.params.slug, rarity:1}).lean();
-        const comun         = await Champion.find({faction: req.params.slug, rarity:0}).lean();
+        const legendarios   = await Champion.find({faction: req.params.slug, rarity:4}).sort({order: 1}).lean();
+        const epicos        = await Champion.find({faction: req.params.slug, rarity:3}).sort({order: -1}).lean();
+        const infrecuentes  = await Champion.find({faction: req.params.slug, rarity:2}).sort({order: -1}).lean();
+        const raros         = await Champion.find({faction: req.params.slug, rarity:1}).sort({order: -1}).lean();
+        const comun         = await Champion.find({faction: req.params.slug, rarity:0}).sort({order: -1}).lean();
 
         res.render('champions/faction-champion',{admin,legendarios,epicos,raros,infrecuentes,comun});
 
